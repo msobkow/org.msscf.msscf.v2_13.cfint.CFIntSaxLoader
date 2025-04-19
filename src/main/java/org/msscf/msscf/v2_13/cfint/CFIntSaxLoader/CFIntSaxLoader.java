@@ -54,13 +54,13 @@ public class CFIntSaxLoader
 {
 
 	// The namespace URI of the supported schema
-	public final static String	SCHEMA_XMLNS = "uri://org.msscf/msscf/2.0.13/cfintloader";
+	public final static String	SCHEMA_XMLNS = "http://msscf.org:8088/msscf/2.0.13/cfintloader";
 
 	// The source for loading the supported schema
-	public final static String	SCHEMA_URI = "/opt/msscf/2.0.13/xsd/cfint-structured.xsd";
+	public final static String	SCHEMA_URI = "http://msscf.org:8088/msscf/2.0.13/xsd/cfint-structured.xsd";
 	public final static String	SCHEMA_ROOT_URI = "/xsd/cfint-structured.xsd";
-	public final static String CFSEC_XMLNS = "uri://org.msscf/msscf/2.0.13/cfsecloader";
-	public final static String CFSEC_URI = "/opt/msscf/2.0.13/xsd/cfsec-structured.xsd";
+	public final static String CFSEC_XMLNS = "http://msscf.org:8088/msscf/2.0.13/cfsecloader";
+	public final static String CFSEC_URI = "http://msscf.org:8088/msscf/2.0.13/xsd/cfsec-structured.xsd";
 	public final static String CFSEC_ROOT_URI = "/xsd/cfsec-structured.xsd";
 
 	protected Grammar myGrammar = null;
