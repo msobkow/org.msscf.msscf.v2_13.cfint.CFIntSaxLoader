@@ -7,7 +7,7 @@
  *	
  *	MSS Code Factory CFInt 2.13 Internet Essentials
  *	
- *	Copyright 2020-2021 Mark Stephen Sobkow mark.sobkow@gmail.com
+ *	Copyright 2020 Mark Stephen Sobkow mark.sobkow@gmail.com
  *	
  *	Licensed under the Apache License, Version 2.0 (the "License");
  *	you may not use this file except in compliance with the License.
@@ -39,10 +39,10 @@ import java.util.*;
 import javax.naming.*;
 import javax.sql.*;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.xerces.xni.grammars.Grammar;
 import org.xml.sax.*;
 
 import org.msscf.msscf.v2_13.cflib.CFLib.*;
+import org.msscf.msscf.v2_13.cflib.CFLib.xml.*;
 import org.msscf.msscf.v2_13.cfsec.CFSec.*;
 import org.msscf.msscf.v2_13.cfint.CFInt.*;
 import org.msscf.msscf.v2_13.cfsec.CFSecObj.*;
@@ -54,16 +54,15 @@ public class CFIntSaxLoader
 {
 
 	// The namespace URI of the supported schema
-	public final static String	SCHEMA_XMLNS = "http://msscf.org:8088/msscf/2.0.13/cfintloader";
+	public final static String	SCHEMA_XMLNS = "uri://org.msscf/msscf/2.0.13/cfintloader";
 
 	// The source for loading the supported schema
-	public final static String	SCHEMA_URI = "http://msscf.org:8088/msscf/2.0.13/xsd/cfint-structured.xsd";
+	public final static String	SCHEMA_URI = "/opt/msscf/2.0.13/xsd/cfint-structured.xsd";
 	public final static String	SCHEMA_ROOT_URI = "/xsd/cfint-structured.xsd";
-	public final static String CFSEC_XMLNS = "http://msscf.org:8088/msscf/2.0.13/cfsecloader";
-	public final static String CFSEC_URI = "http://msscf.org:8088/msscf/2.0.13/xsd/cfsec-structured.xsd";
+	public final static String CFSEC_XMLNS = "uri://org.msscf/msscf/2.0.13/cfsecloader";
+	public final static String CFSEC_URI = "/opt/msscf/2.0.13/xsd/cfsec-structured.xsd";
 	public final static String CFSEC_ROOT_URI = "/xsd/cfsec-structured.xsd";
 
-	protected Grammar myGrammar = null;
 
 	// The schema instance to load in to
 
@@ -140,89 +139,12 @@ public class CFIntSaxLoader
 	public CFIntSaxLoader() {
 		super();
 		setRootElementHandler( getSaxRootHandler() );
-		if( myGrammar == null ) {
-			InputStream input;
-			File file = new File( SCHEMA_URI );
-			if( file.exists() ) {
-				try {
-					input = new FileInputStream( file );
-				}
-				catch( Exception e ) {
-					input = null;
-				}
-				if( input != null ) {
-					myGrammar = addToGrammarPool( SCHEMA_URI, input );
-				}
-			}
-			else {
-				input = getClass().getResourceAsStream( SCHEMA_ROOT_URI );
-				if( input != null ) {
-					myGrammar = addToGrammarPool( SCHEMA_ROOT_URI, input );
-				}
-			}
-			file = new File( CFSEC_URI );
-			if( file.exists() ) {
-				try {
-					input = new FileInputStream( file );
-				}
-				catch( Exception e ) {
-					input = null;
-				}
-				if( input != null ) {
-					addToGrammarPool( CFSEC_URI, input );
-				}
-			}
-			else {
-				input = getClass().getResourceAsStream( CFSEC_ROOT_URI );
-				if( input != null ) {
-					addToGrammarPool( CFSEC_ROOT_URI, input );
-				}
-			}
-		}
 		initParser();
 	}
 
 	public CFIntSaxLoader( ICFLibMessageLog logger ) {
 		super( logger );
 		setRootElementHandler( getSaxRootHandler() );
-		if( myGrammar == null ) {
-			InputStream input;
-			File file = new File( SCHEMA_URI );
-			if( file.exists() ) {
-				try {
-					input = new FileInputStream( file );
-				}
-				catch( Exception e ) {
-					input = null;
-				}
-				if( input != null ) {
-					myGrammar = addToGrammarPool( SCHEMA_URI, input );
-				}
-			}
-			else {
-				input = getClass().getResourceAsStream( SCHEMA_ROOT_URI );
-				if( input != null ) {
-					myGrammar = addToGrammarPool( SCHEMA_ROOT_URI, input );
-				}
-			}
-			file = new File( CFSEC_URI );
-			if( file.exists() ) {
-				try {
-					input = new FileInputStream( file );
-				}
-				catch( Exception e ) {
-					input = null;
-				}
-				if( input != null ) {
-					addToGrammarPool( CFSEC_URI, input );
-				}
-			}
-			else {
-				input = getClass().getResourceAsStream( CFSEC_ROOT_URI );
-				if( input != null ) {
-					addToGrammarPool( CFSEC_ROOT_URI, input );
-				}
-			}
 		}
 		initParser();
 	}
