@@ -145,7 +145,6 @@ public class CFIntSaxLoader
 	public CFIntSaxLoader( ICFLibMessageLog logger ) {
 		super( logger );
 		setRootElementHandler( getSaxRootHandler() );
-		}
 		initParser();
 	}
 
